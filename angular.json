@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "MeteoReader"
+    }
+  },
+  "defaultProject": "MeteoReader",
+  "cli": {
+    "analytics": false
+  }
 }

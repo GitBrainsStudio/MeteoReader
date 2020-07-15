@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatBottomSheetRef, MatBottomSheet } from '@angular/material/bottom-sheet';
+import { ApiKeySettingsComponent } from '../api-key-settings/api-key-settings.component';
 
 @Component({
   selector: 'app-weather-info-page',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeatherInfoPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _bottomSheet: MatBottomSheet) {}
+
+  openApiKeySettings(): void {
+    this._bottomSheet.open(ApiKeySettingsComponent);
+  }
 
   ngOnInit(): void {
+    /* this.openApiKeySettings(); */
   }
+
+
 
 }
