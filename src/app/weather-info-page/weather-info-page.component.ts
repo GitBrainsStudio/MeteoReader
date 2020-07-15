@@ -3,6 +3,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ApiKeySettingsComponent } from '../api-key-settings/api-key-settings.component';
 import { KeyLocalDetector } from '../Models/KeyLocalDetector';
 import { MatDialog } from '@angular/material/dialog';
+import { KeyService } from '../Services/Key.service';
 
 @Component({
   selector: 'app-weather-info-page',
@@ -11,13 +12,17 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class WeatherInfoPageComponent implements OnInit {
 
-  constructor(private _bottomSheet: MatBottomSheet, public dialog: MatDialog) {}
+  constructor(private _bottomSheet: MatBottomSheet, public dialog: MatDialog, private keyService : KeyService) {}
 
   openDialog() {
     const dialogRef = this.dialog.open(ApiKeySettingsComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      
+      this.loading = true;
+      console.log(this.keyService.key)
+
+
     });
   }
 
@@ -36,6 +41,7 @@ export class WeatherInfoPageComponent implements OnInit {
     /* this.openApiKeySettings(); */
   }
 
+  loading:boolean;
 
 
 }

@@ -5,7 +5,10 @@ import { WeatherInfoPageComponent } from './weather-info-page/weather-info-page.
 
 const routes: Routes = [
   {
-    path: 'weather', component:WeatherInfoPageComponent
+    path: '', component:WeatherInfoPageComponent
+  },
+  {
+    path:'**', redirectTo: ''
   }
 ];
 

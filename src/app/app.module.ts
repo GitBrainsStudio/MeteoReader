@@ -8,6 +8,7 @@ import { MaterialModule } from './material.module';
 import { ApiKeySettingsComponent } from './api-key-settings/api-key-settings.component'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
     AppRoutingModule,
     FormsModule,
     MaterialModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })
