@@ -1,1 +1,22 @@
-<p>api-key-settings works!</p>
+<div style="font-size: 110%;"> 
+    <h2>Привет, незнакомец! 😉</h2> 
+    <p>Мы видим, что ты у нас впервые.</p>
+   
+    <p>Для работы с нашем приложением, ты должен ввести свой API-ключ.</p>  
+    <form [formGroup]="keyForm" novalidate (ngSubmit)="submit()">
+
+        <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Вот сюда ключик, пожалуйста</mat-label>
+            <input matInput formControlName="apiKey">
+            <mat-hint>У тебя нет ключа? <a href="https://openweathermap.org/" target="_blank">Получи его здесь</a></mat-hint>
+          </mat-form-field>
+
+
+
+    
+      <mat-dialog-actions align="end">
+        <button mat-button cdkFocusInitial>Продолжить</button>
+      </mat-dialog-actions>
+
+    </form>
+</div>

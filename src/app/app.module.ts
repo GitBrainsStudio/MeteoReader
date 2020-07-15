@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { WeatherInfoPageComponent } from './weather-info-page/weather-info-page.component';
 import { MaterialModule } from './material.module';
 import { ApiKeySettingsComponent } from './api-key-settings/api-key-settings.component'
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MaterialModule
+    FormsModule,
+    MaterialModule,
+    ReactiveFormsModule 
   ],
   bootstrap: [AppComponent]
 })

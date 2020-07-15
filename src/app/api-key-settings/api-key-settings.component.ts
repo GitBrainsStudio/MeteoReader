@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-api-key-settings',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApiKeySettingsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog:MatDialogRef<ApiKeySettingsComponent>) { }
 
   ngOnInit(): void {
   }
 
+  keyForm = new FormGroup({
+    apiKey: new FormControl('', [Validators.required]),
+  });
+
+  submit()
+  {
+    if (this.keyForm.valid)
+      this.dialog.close();
+  }
 }
