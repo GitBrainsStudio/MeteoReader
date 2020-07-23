@@ -4,6 +4,8 @@ import { ApiKeySettingsComponent } from '../api-key-settings/api-key-settings.co
 import { KeyLocalDetector } from '../Models/KeyLocalDetector';
 import { MatDialog } from '@angular/material/dialog';
 import { KeyService } from '../Services/Key.service';
+import { PagerService } from '../Services/Page.service';
+import { ResponseData } from '../Models/ResponseData';
 
 @Component({
   selector: 'app-weather-info-page',
@@ -12,16 +14,18 @@ import { KeyService } from '../Services/Key.service';
 })
 export class WeatherInfoPageComponent implements OnInit {
 
-  constructor(private _bottomSheet: MatBottomSheet, public dialog: MatDialog, private keyService : KeyService) {}
+  constructor(private _bottomSheet: MatBottomSheet, public dialog: MatDialog, private keyService : KeyService, private pagerService : PagerService) {}
 
   openDialog() {
     const dialogRef = this.dialog.open(ApiKeySettingsComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
-      
-      this.loading = true;
-      console.log(this.keyService.key)
 
+      this.keyService.downloadDataFromApi().subscribe(data => 
+        {
+          this.apiData = data;
+          this.setPage(1);
+        });
 
     });
   }
@@ -41,7 +45,20 @@ export class WeatherInfoPageComponent implements OnInit {
     /* this.openApiKeySettings(); */
   }
 
-  loading:boolean;
+  setPage(page: number) {
+    if (page < 1 || page > this.pager.totalPages) {
+        return;
+    }
 
+    this.pager = this.pagerService.getPager(this.apiData.list.length, page);
+
+    this.pagedItems = this.apiData.list.slice(this.pager.startIndex, this.pager.endIndex + 1);
+}
+
+  pager: any = {};
+
+  pagedItems: any[];
+
+  apiData:ResponseData;
 
 }

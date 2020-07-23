@@ -2,6 +2,24 @@
     <span>Погода в Челябинске</span>
 </mat-toolbar>
 
-<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+<mat-progress-bar mode="indeterminate" *ngIf="!apiData"></mat-progress-bar>
 
-<h3 *ngIf="loading">Загружаю данные из за рубежа..</h3>
+<main *ngIf="pagedItems" class="weather-card-block">
+    <div *ngFor="let item of pagedItems">
+        <weather-card [weather]="item"></weather-card>
+    </div>
+
+    <div *ngIf="pager.pages && pager.pages.length" class="pagination">
+  <!--       <button mat-raised-button (click)="setPage(1)">Первая</button>
+        <button mat-raised-button (click)="setPage(pager.currentPage - 1)">Предыдущая</button> -->
+        <div *ngFor="let page of pager.pages" >
+            <button mat-raised-button (click)="setPage(page)">{{page}}</button>
+        </div>
+<!--         <button mat-raised-button (click)="setPage(pager.currentPage + 1)">Следующая</button>
+        <button mat-raised-button (click)="setPage(pager.totalPages)">Крайняя</button> -->
+    </div>
+
+
+</main>
+
+

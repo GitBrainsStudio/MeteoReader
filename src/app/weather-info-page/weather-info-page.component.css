@@ -1,0 +1,20 @@
+.weather-card-block
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.pagination
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.pagination button 
+{
+    margin: 2px;
+}

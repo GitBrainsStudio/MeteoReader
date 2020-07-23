@@ -9,12 +9,14 @@ import { ApiKeySettingsComponent } from './api-key-settings/api-key-settings.com
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { WeatherCardComponent } from '../app/weather-card/weather-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherInfoPageComponent,
-    ApiKeySettingsComponent
+    ApiKeySettingsComponent,
+    WeatherCardComponent
   ],
   imports: [
     BrowserModule,
