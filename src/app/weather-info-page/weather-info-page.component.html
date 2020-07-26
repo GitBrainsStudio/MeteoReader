@@ -10,16 +10,22 @@
     </div>
 
     <div *ngIf="pager.pages && pager.pages.length" class="pagination">
-  <!--       <button mat-raised-button (click)="setPage(1)">Первая</button>
-        <button mat-raised-button (click)="setPage(pager.currentPage - 1)">Предыдущая</button> -->
+        <button mat-raised-button (click)="setPage(pager.currentPage - 1)">Туда</button> 
         <div *ngFor="let page of pager.pages" >
-            <button mat-raised-button (click)="setPage(page)">{{page}}</button>
+            <button mat-raised-button (click)="setPage(page)" [ngClass]="{'active-page' : pager.currentPage === page}">{{page}}</button>
         </div>
-<!--         <button mat-raised-button (click)="setPage(pager.currentPage + 1)">Следующая</button>
-        <button mat-raised-button (click)="setPage(pager.totalPages)">Крайняя</button> -->
+        <button mat-raised-button (click)="setPage(pager.currentPage + 1)" >Сюда</button>
     </div>
-
-
 </main>
+
+<style>
+
+
+.active-page
+{
+    background-color: #3f51b5;
+    color:white;
+}
+</style>
 
 

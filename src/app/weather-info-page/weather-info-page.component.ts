@@ -53,6 +53,7 @@ export class WeatherInfoPageComponent implements OnInit {
     this.pager = this.pagerService.getPager(this.apiData.list.length, page);
 
     this.pagedItems = this.apiData.list.slice(this.pager.startIndex, this.pager.endIndex + 1);
+
 }
 
   pager: any = {};
