@@ -27,4 +27,9 @@ export class ApiKeySettingsComponent implements OnInit {
        this.dialog.close();
     }
   }
+
+  close()
+  {
+    this.dialog.close();
+  }
 }

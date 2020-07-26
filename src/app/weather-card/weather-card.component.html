@@ -1,8 +1,19 @@
 <mat-card class="weather-card">
    
-    <h4> {{ weather.dt | date:'yyyy.MM.dd HH:mm' }} </h4>
+    <div class="weather-card-content">
+        <div class="weather-card-content-icon">
+            <img [src]="imageUrl(weather.weather[0].icon)">
+        </div>
 
-    <p>Температура: {{ weather.main.temp }}</p>
+        <div class="weather-card-content-data">
+           
+
+            <h4> {{ weather.dt | date:'yyyy.MM.dd HH:mm' }} </h4>
+        
+            <p>Температура: {{ weather.main.temp }}</p>
+        </div>
+
+    </div>
 
 
 </mat-card>

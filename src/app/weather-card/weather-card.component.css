@@ -4,3 +4,32 @@
     margin: 10px;
     text-align: center;
 }
+
+.weather-card-content
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.weather-card-content-data
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.weather-card-content-icon
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.weather-icon-sun
+{
+    font-size: 48px;
+    color: rgb(255, 169, 57);
+}

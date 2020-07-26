@@ -1,0 +1,13 @@
+<form [formGroup]="keyForm" novalidate (ngSubmit)="submit()">
+
+    <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Api-ключ</mat-label>
+        <input matInput formControlName="apiKey">
+        <mat-hint>У тебя нет ключа? <a href="https://openweathermap.org/" target="_blank">Получи его здесь</a></mat-hint>
+      </mat-form-field>
+
+  <mat-dialog-actions align="end">
+    <button mat-button cdkFocusInitial>Сохранить</button>
+  </mat-dialog-actions>
+
+</form>

@@ -6,6 +6,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { KeyService } from '../Services/Key.service';
 import { PagerService } from '../Services/Page.service';
 import { ResponseData } from '../Models/ResponseData';
+import { faGithub } from '@fortawesome/fontawesome-free-brands';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { ApiKeyViewerComponent } from '../api-key-viewer/api-key-viewer.component';
+import { ApiKeyViewerBottomSheetComponent } from '../api-key-viewer-bottom-sheet/api-key-viewer-bottom-sheet.component';
+import { empty } from 'rxjs';
+
 
 @Component({
   selector: 'app-weather-info-page',
@@ -17,32 +23,47 @@ export class WeatherInfoPageComponent implements OnInit {
   constructor(private _bottomSheet: MatBottomSheet, public dialog: MatDialog, private keyService : KeyService, private pagerService : PagerService) {}
 
   openDialog() {
+
     const dialogRef = this.dialog.open(ApiKeySettingsComponent, { disableClose: true });
 
     dialogRef.afterClosed().subscribe(result => {
-
-      this.keyService.downloadDataFromApi().subscribe(data => 
-        {
-          this.apiData = data;
-          this.setPage(1);
-        });
-
+      
+      this.getWeatherData();
+     
     });
   }
 
+  getWeatherData()
+  {
+    this.pagedItems = [];
+    this.pager = empty;
+    
+    this.loading = true;
+    this.keyService.downloadDataFromApi().subscribe(data => 
+      {
+        this.apiData = data;
+        this.setPage(1);
+        this.loading = false;
+      },
+      error => {
+        this.loading = false;
+      },);
+
+  }
+
   openApiKeySettings(): void {
-    this._bottomSheet.open(ApiKeySettingsComponent);
+    const dialogRef = this._bottomSheet.open(ApiKeyViewerBottomSheetComponent);
+    dialogRef.afterDismissed().subscribe(result => 
+      {
+        this.getWeatherData();
+      })
   }
 
   ngOnInit(): void {
 
-    if (!KeyLocalDetector.isKey)
-    {
-      /* this.openApiKeySettings(); */
-      this.openDialog();
-    }
-
-    /* this.openApiKeySettings(); */
+    if (!KeyLocalDetector.isKey)  this.openDialog();
+ 
+    else this.getWeatherData();
   }
 
   setPage(page: number) {
@@ -56,10 +77,14 @@ export class WeatherInfoPageComponent implements OnInit {
 
 }
 
+  loading : boolean = false;
+
   pager: any = {};
 
   pagedItems: any[];
 
   apiData:ResponseData;
 
+  faGithub = faGithub
+  faCog = faCog;
 }

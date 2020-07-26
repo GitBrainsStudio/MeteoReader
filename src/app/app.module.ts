@@ -11,12 +11,20 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { WeatherCardComponent } from '../app/weather-card/weather-card.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { ApiKeyViewerComponent } from '../app/api-key-viewer/api-key-viewer.component'
+
+import { ApiKeyViewerBottomSheetComponent } from '../app/api-key-viewer-bottom-sheet/api-key-viewer-bottom-sheet.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     WeatherInfoPageComponent,
     ApiKeySettingsComponent,
-    WeatherCardComponent
+    WeatherCardComponent,
+    ApiKeyViewerComponent,
+    ApiKeyViewerBottomSheetComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +33,8 @@ import { WeatherCardComponent } from '../app/weather-card/weather-card.component
     FormsModule,
     MaterialModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   bootstrap: [AppComponent]
 })

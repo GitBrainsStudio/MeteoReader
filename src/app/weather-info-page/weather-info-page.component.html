@@ -1,8 +1,13 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="menu-top">
     <span>Погода в Челябинске</span>
+    <div class="btn-group">
+        <fa-icon [icon]="faGithub"></fa-icon>
+        <fa-icon [icon]="faCog" (click)="openApiKeySettings()"></fa-icon>
+    </div>
+
 </mat-toolbar>
 
-<mat-progress-bar mode="indeterminate" *ngIf="!apiData"></mat-progress-bar>
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
 
 <main *ngIf="pagedItems" class="weather-card-block">
     <div *ngFor="let item of pagedItems">
@@ -14,18 +19,9 @@
         <div *ngFor="let page of pager.pages" >
             <button mat-raised-button (click)="setPage(page)" [ngClass]="{'active-page' : pager.currentPage === page}">{{page}}</button>
         </div>
-        <button mat-raised-button (click)="setPage(pager.currentPage + 1)" >Сюда</button>
+        <button mat-raised-button (click)="setPage(pager.currentPage + 1)">Сюда</button>
     </div>
 </main>
 
-<style>
-
-
-.active-page
-{
-    background-color: #3f51b5;
-    color:white;
-}
-</style>
 
 

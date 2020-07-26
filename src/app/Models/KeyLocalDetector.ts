@@ -6,4 +6,9 @@ export class KeyLocalDetector
        if (key) return true;
        return false;
     }
+
+    static Key() : string
+    {
+        return localStorage.getItem('apiKey');
+    }
 }
