@@ -10,7 +10,8 @@ import { faGithub } from '@fortawesome/fontawesome-free-brands';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { ApiKeyViewerComponent } from '../api-key-viewer/api-key-viewer.component';
 import { ApiKeyViewerBottomSheetComponent } from '../api-key-viewer-bottom-sheet/api-key-viewer-bottom-sheet.component';
-import { empty } from 'rxjs';
+import { empty, ReplaySubject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class WeatherInfoPageComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ApiKeySettingsComponent, { disableClose: true });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().pipe(takeUntil(this.destroy)).subscribe(result => {
       
       this.getWeatherData();
      
@@ -39,7 +40,7 @@ export class WeatherInfoPageComponent implements OnInit {
     this.pager = empty;
     
     this.loading = true;
-    this.keyService.downloadDataFromApi().subscribe(data => 
+    this.keyService.downloadDataFromApi().pipe(takeUntil(this.destroy)).subscribe(data => 
       {
         this.apiData = data;
         this.setPage(1);
@@ -53,7 +54,7 @@ export class WeatherInfoPageComponent implements OnInit {
 
   openApiKeySettings(): void {
     const dialogRef = this._bottomSheet.open(ApiKeyViewerBottomSheetComponent);
-    dialogRef.afterDismissed().subscribe(result => 
+    dialogRef.afterDismissed().pipe(takeUntil(this.destroy)).subscribe(result => 
       {
         this.getWeatherData();
       })
@@ -61,6 +62,7 @@ export class WeatherInfoPageComponent implements OnInit {
 
   ngOnInit(): void {
 
+    console.log(KeyLocalDetector.isKey)
     if (!KeyLocalDetector.isKey)  this.openDialog();
  
     else this.getWeatherData();
@@ -86,5 +88,13 @@ export class WeatherInfoPageComponent implements OnInit {
   apiData:ResponseData;
 
   faGithub = faGithub
+  
   faCog = faCog;
+
+  destroy: ReplaySubject<any> = new ReplaySubject<any>(1);
+
+  ngOnDestroy() {
+    this.destroy.next(null);
+    this.destroy.complete();
+  }
 }

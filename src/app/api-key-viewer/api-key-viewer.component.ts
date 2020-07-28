@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { KeyService } from '../Services/Key.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
+import { KeyLocalSetter } from '../Models/KeyLocalSetter';
 
 @Component({
   selector: 'app-api-key-viewer',
@@ -15,7 +16,12 @@ export class ApiKeyViewerComponent implements OnInit{
   ngOnInit(): void {
 
     this.initForm();
+    this.setKeyData();
+    
+  }
 
+  setKeyData()
+  {
     this.keyForm.setValue({ apiKey : this.keyService.key});
   }
 
@@ -37,6 +43,12 @@ export class ApiKeyViewerComponent implements OnInit{
       this.submitted.emit(true);
     }
     
+  }
+
+  clearKey()
+  {
+    KeyLocalSetter.Clear();
+    this.setKeyData();
   }
 
   @Output() submitted: EventEmitter<boolean> = new EventEmitter();

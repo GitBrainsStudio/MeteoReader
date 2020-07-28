@@ -6,8 +6,8 @@
         <mat-hint>У тебя нет ключа? <a href="https://openweathermap.org/" target="_blank">Получи его здесь</a></mat-hint>
       </mat-form-field>
 
-  <mat-dialog-actions align="end">
-    <button mat-button cdkFocusInitial>Сохранить</button>
+  <mat-dialog-actions>
+    <button mat-button cdkFocusInitial type="submit">Сохранить</button>
+    <button mat-button (click)="clearKey()" type="button">Удалить ключ из кэша</button>
   </mat-dialog-actions>
-
 </form>

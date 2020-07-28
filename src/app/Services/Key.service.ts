@@ -15,8 +15,7 @@ export class KeyService
 
     get key() : string
     {
-        if (KeyLocalDetector.isKey) return KeyLocalDetector.Key();
-        else return "";
+      return KeyLocalDetector.Key();
     }
 
     set key(key:string)
@@ -27,6 +26,7 @@ export class KeyService
     
     downloadDataFromApi() : Observable<ResponseData>
     {
+        console.log(this.key)
         return this.http.get("http://api.openweathermap.org/data/2.5/forecast?q=Chelyabinsk&appid=" + this.key + "&units=metric")
         
         .pipe(map((v:ResponseData) => 

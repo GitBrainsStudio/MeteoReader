@@ -1,20 +1,7 @@
-.weather-card-block
-{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
 
-.pagination
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
 
-.pagination button 
+
+.weather-card-pagination button 
 {
     margin: 2px;
 }
@@ -41,3 +28,77 @@
 {
     margin: 2px;
 }
+
+.weather-card-block
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.weather-card-pagination
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@media screen and (min-width:1000px)
+{
+    .weather-card-block
+    {
+        flex-direction: row;
+    }
+
+    .weather-card-pagination
+    {
+        flex-direction: column;
+    }
+    
+}
+
+/* @media screen and (min-width:1000px)
+{
+    .weather-card-block
+    {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .weather-paginator
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+}
+
+@media screen and (max-width:1000px)
+{
+    .weather-card-block
+    {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .weather-paginator
+    {
+        background-color: violet;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+} */

@@ -4,4 +4,9 @@ export class KeyLocalSetter
     {
         localStorage.setItem('apiKey', apiKey);
     }
+
+    static Clear()
+    {
+        localStorage.removeItem('apiKey');
+    }
 }
