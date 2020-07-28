@@ -3,6 +3,7 @@ import { KeyService } from '../Services/Key.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
 import { KeyLocalSetter } from '../Models/KeyLocalSetter';
+import { KeyLocalDetector } from '../Models/KeyLocalDetector';
 
 @Component({
   selector: 'app-api-key-viewer',
@@ -43,6 +44,11 @@ export class ApiKeyViewerComponent implements OnInit{
       this.submitted.emit(true);
     }
     
+  }
+
+  get isKey() : boolean
+  {
+    return KeyLocalDetector.isKey;
   }
 
   clearKey()

@@ -62,7 +62,6 @@ export class WeatherInfoPageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(KeyLocalDetector.isKey)
     if (!KeyLocalDetector.isKey)  this.openDialog();
  
     else this.getWeatherData();

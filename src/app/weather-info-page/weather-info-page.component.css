@@ -24,6 +24,14 @@
     flex-direction: row;
 }
 
+.btn-group a
+{
+    align-items: center;
+    color: white;
+    margin: 0;
+    padding:0;
+}
+
 .btn-group fa-icon
 {
     margin: 2px;
